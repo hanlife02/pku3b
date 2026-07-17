@@ -482,7 +482,7 @@ async fn ta_hw_down(
         if !confirmed {
             return Ok(());
         }
-        hw_cols.iter().copied().collect()
+        hw_cols.to_vec()
     } else {
         vec![resolve_hw(&hw_cols, hw_id)?]
     };
@@ -540,7 +540,7 @@ async fn ta_hw_down(
                 "[{}/{}] processing {}...",
                 i + 1,
                 total,
-                &attempt.user_id
+                attempt.user_id
             ));
 
             let membership = match membership_map.get(&attempt.user_id) {
@@ -582,7 +582,7 @@ async fn ta_hw_down(
                 "[{}/{}] downloading {}...",
                 i + 1,
                 total,
-                &dest_name
+                dest_name
             ));
 
             match b.download_attempt_file(&download_url).await {
