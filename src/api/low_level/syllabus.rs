@@ -112,22 +112,19 @@ impl LowLevelClient {
             .as_str();
         anyhow::ensure!(sida.len() == 32, "invalid sida {}", sida);
 
-        let res = self
+        let mut res = self
             .http_client
             .get(SSO_LOGIN)?
             .query(&[("sida", sida), ("sttp", dual_sttp)])?
             .send()
             .await?;
 
-        log::trace!("redir to http");
-        let url = extract_redirect_url(&res)?;
+        // Server may return either a redirect chain or a direct 200 after dual-degree selection.
+        while let Ok(url) = extract_redirect_url(&res) {
+            log::debug!("dual degree sso redirected to {url}");
+            res = self.get_by_uri(url).await?;
+        }
 
-        log::trace!("redir to https");
-        let res = self.get_by_uri(url).await?;
-        let url = extract_redirect_url(&res)?;
-
-        log::trace!("final redir");
-        let res = self.get_by_uri(url).await?;
         anyhow::ensure!(res.status().is_success(), "error status {}", res.status());
 
         Ok(())
