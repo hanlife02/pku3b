@@ -6,6 +6,11 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sshwy/pku3b/build-release.yml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/sshwy/pku3b/total)
 
+> [!NOTE]
+> 当前项目处于稳定维护状态，项目所属者已本科毕业离开校园，不会再主动添加新功能。但欢迎各位校友参与贡献，本人工作尚不繁忙，有余力维护本项目。
+>
+> 针对 AI 开发，本项目采用[Debian AI 的政策](https://www.debian.org/vote/2026/vote_002)，鼓励 “Responsible Use of Generative AI”，核心立场是不认可、也不禁止生成式 AI 工具的使用。也就是说允许负责任地使用 AI，但“AI 写的”不能成为降低质量或免责的理由；最终责任始终属于提交者。
+
 如果这个项目为你带来了便利，不妨给个 star ⭐ 支持一下～
 
 pku3b 被用于以下开源项目：
